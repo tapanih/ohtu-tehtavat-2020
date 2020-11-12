@@ -32,6 +32,6 @@ public class Player {
 
   @Override
   public String toString() {
-    return name + " team " + team + " goals " + goals + " assists " + assists;
+    return String.format("%-20s  %s  %2d + %2d = %2d", name, team, goals, assists, (goals + assists));
   }
 }
