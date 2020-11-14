@@ -30,10 +30,22 @@ public class Stepdefs {
         element.click();
     }
 
+    @Given("user with username {string} with password {string} is successfully created")
+    public void createUserWithValidCredentials(String username, String password) {
+        newUserIsSelected();
+        createUserWith(username, password, password);
+    }
+
+    @Given("user with username {string} and password {string} is tried to be created")
+    public void createUserWithInvalidCredentials(String username, String password) {
+        newUserIsSelected();
+        createUserWith(username, password, password);
+    }
+
     @When("correct username {string} and password {string} are given")
     public void correctUsernameAndPasswordAreGiven(String username, String password) {
         logInWith(username, password);
-    }    
+    }
     
     @Then("user is logged in")
     public void userIsLoggedIn() {
@@ -107,6 +119,7 @@ public class Stepdefs {
     }
 
     private void createUserWith(String username, String password, String passwordConfirmation) {
+
         assertTrue(driver.getPageSource().contains("Create username and give password"));
         WebElement element = driver.findElement(By.name("username"));
         element.sendKeys(username);
